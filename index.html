@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0e0d">
+<title>Alvaro Salguero Muñoz — Systems &amp; Data Engineer</title>
+<meta name="description" content="Contact card of Alvaro Salguero Muñoz — Systems &amp; Data Engineer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e0d;
+    --bg-elevated:#111716;
+    --bg-card:#141b19;
+    --line:#243230;
+    --line-bright:#3a4c48;
+    --text:#dbe4e0;
+    --text-dim:#87968f;
+    --text-dimmer:#54615c;
+    --rust:#c9682b;
+    --rust-bright:#e58346;
+    --green:#4fa07a;
+    --green-bright:#6ac496;
+    --blue:#5b9aa8;
+    --font-head:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{background:var(--bg);-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    min-height:100dvh;
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(201,104,43,0.07), transparent 45%),
+      radial-gradient(circle at 85% 25%, rgba(79,160,122,0.05), transparent 40%);
+    background-repeat:no-repeat;
+    color:var(--text);
+    font-family:var(--font-head);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding:
+      max(20px, env(safe-area-inset-top))
+      max(18px, env(safe-area-inset-right))
+      max(28px, env(safe-area-inset-bottom))
+      max(18px, env(safe-area-inset-left));
+  }
+  ::selection{background:var(--rust);color:#0a0e0d;}
+  :focus-visible{outline:2px solid var(--rust-bright);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;}
+  }
+
+  .card{max-width:440px;margin:0 auto;}
+
+  /* ---- IDENTITY (terminal window) ---- */
+  .terminal{
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+    overflow:hidden;
+  }
+  .term-bar{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 14px;
+    background:var(--bg-elevated);
+    border-bottom:1px solid var(--line);
+  }
+  .dot{width:10px;height:10px;border-radius:50%;}
+  .dot.r{background:#e5605a;} .dot.y{background:#e8b84b;} .dot.g{background:#57c278;}
+  .term-title{margin-left:8px;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-dimmer);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .term-body{padding:20px 20px 24px;}
+  .cmd{font-family:var(--font-mono);font-size:0.88rem;color:var(--text-dim);margin:0 0 18px;}
+  .cmd .k{color:var(--blue);}
+  .cmd .v{color:var(--text);}
+
+  .photo{
+    position:relative;
+    width:112px;height:112px;
+    border:1px solid var(--line-bright);
+    border-radius:6px;
+    background:var(--bg-elevated);
+    overflow:hidden;
+    display:grid;place-items:center;
+    margin-bottom:20px;
+  }
+  .photo .initials{font-family:var(--font-mono);font-size:1.7rem;font-weight:600;color:var(--text-dimmer);}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+  h1{
+    font-size:clamp(1.65rem,7.4vw,2.1rem);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.12;
+    margin:0 0 14px;
+  }
+  h1 .accent{display:block;color:var(--rust-bright);font-size:0.62em;font-weight:700;letter-spacing:-0.01em;margin-top:6px;}
+  .bio{color:var(--text-dim);font-size:1rem;margin:0;max-width:52ch;}
+
+  /* ---- LINKS ---- */
+  .eyebrow{
+    font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.06em;
+    color:var(--green-bright);margin:30px 0 12px 2px;
+  }
+  .eyebrow::before{content:'# ';color:var(--text-dimmer);}
+  .links{display:flex;flex-direction:column;gap:10px;}
+
+  .link{
+    display:flex;align-items:center;gap:14px;
+    min-height:68px;
+    padding:12px 16px;
+    background:var(--bg-card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    color:var(--text);
+    text-decoration:none;
+    transition:border-color .15s, background .15s, transform .12s;
+  }
+  .link:active{background:var(--bg-elevated);border-color:var(--green-bright);transform:scale(0.99);}
+  @media (hover:hover){.link:hover{border-color:var(--green-bright);}}
+
+  .ico{
+    flex:none;
+    width:40px;height:40px;
+    display:grid;place-items:center;
+    border:1px solid var(--line-bright);
+    border-radius:4px;
+    color:var(--green-bright);
+  }
+  .ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .txt{flex:1;min-width:0;display:flex;flex-direction:column;}
+  .txt b{font-weight:600;font-size:1rem;line-height:1.3;}
+  .txt small{font-family:var(--font-mono);font-size:0.76rem;color:var(--text-dimmer);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .go{flex:none;font-family:var(--font-mono);font-size:1.3rem;color:var(--text-dimmer);}
+
+  .link.primary{background:var(--rust);border-color:var(--rust);color:#0a0e0d;}
+  .link.primary:active{background:var(--rust-bright);border-color:var(--rust-bright);}
+  @media (hover:hover){.link.primary:hover{background:var(--rust-bright);border-color:var(--rust-bright);}}
+  .link.primary .ico{border-color:rgba(10,14,13,0.35);color:#0a0e0d;}
+  .link.primary .txt small,.link.primary .go{color:rgba(10,14,13,0.72);}
+
+  footer{margin-top:34px;text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:var(--text-dimmer);}
+  footer .caret{display:inline-block;width:8px;height:1.05em;background:var(--green-bright);margin-left:4px;vertical-align:-2px;animation:blink 1.1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+</style>
+</head>
+<body>
+
+<main class="card">
+
+  <!-- IDENTITY: edit the photo path, the bio and the title here -->
+  <section class="terminal" aria-label="About">
+    <div class="term-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="term-title">alvaro@card — whoami</span>
+    </div>
+    <div class="term-body">
+      <p class="cmd"><span class="k">$</span> <span class="v">whoami</span></p>
+
+      <div class="photo">
+        <span class="initials">ASM</span>
+        <!-- Put your picture next to this file and name it photo.jpg (square works best) -->
+        <img src="profile_photo.png" alt="Photo of Alvaro Salguero Muñoz" onerror="this.remove()">
+      </div>
+
+      <h1>Alvaro Salguero Muñoz <span class="accent">Systems &amp; Data Engineer</span></h1>
+
+      <!-- BIO: replace with your own text (2–3 sentences) -->
+      <p class="bio">
+        Trained in Economics and Official Statistics, now building from the kernel up:
+        C/C++, Linux internals and secure infrastructure.
+      </p>
+    </div>
+  </section>
+
+  <!-- LINKS: targets are filled from CONFIG in the script below -->
+  <p class="eyebrow">links</p>
+  <nav class="links" aria-label="Contact links">
+
+    <a class="link primary" id="save" download="alvaro-salguero.vcf" href="#">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span>
+      <span class="txt"><b>Save my contact</b><small>Add me to your phone</small></span>
+      <span class="go" aria-hidden="true">›</span>
+    </a>
+
+    <a class="link" id="website" target="_blank" rel="noopener" href="#">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+      <span class="txt"><b>Personal website</b><small data-sub="website"></small></span>
+      <span class="go" aria-hidden="true">›</span>
+    </a>
+
+    <a class="link" id="whatsapp" target="_blank" rel="noopener" href="#">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+      <span class="txt"><b>WhatsApp</b><small>Send me a message</small></span>
+      <span class="go" aria-hidden="true">›</span>
+    </a>
+
+    <a class="link" id="github" target="_blank" rel="noopener" href="#">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
+      <span class="txt"><b>GitHub</b><small data-sub="github"></small></span>
+      <span class="go" aria-hidden="true">›</span>
+    </a>
+
+    <a class="link" id="linkedin" target="_blank" rel="noopener" href="#">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+      <span class="txt"><b>LinkedIn</b><small data-sub="linkedin"></small></span>
+      <span class="go" aria-hidden="true">›</span>
+    </a>
+
+    <!-- OPTIONAL: CV row. Remove the comment markers and set CONFIG.cv below.
+    <a class="link" id="cv" target="_blank" rel="noopener" href="#">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg></span>
+      <span class="txt"><b>CV</b><small>Download as PDF</small></span>
+      <span class="go" aria-hidden="true">›</span>
+    </a>
+    -->
+  </nav>
+
+  <footer>$ exit 0<span class="caret"></span></footer>
+</main>
+
+<script>
+  // ==== EDIT THESE VALUES: everything else updates automatically ====
+  const CONFIG = {
+    firstName: "Alvaro",
+    lastName:  "Salguero Muñoz",
+    title:     "Systems & Data Engineer",
+    phone:     "+34647585364",                          // international format
+    email:     "alvarosalguero99@gmail.com",
+    website:   "https://alvarosm99.github.io/my-portfolio/",
+    github:    "https://github.com/alvarosm99",
+    linkedin:  "https://www.linkedin.com/in/alvaro-salguero-munoz",
+    cv:        "",                                      // e.g. "cv.pdf" (only if you enable the CV row)
+    whatsappText: "Hi Alvaro, I scanned your card and I'd like to talk."
+  };
+  // ===================================================================
+
+  const $ = id => document.getElementById(id);
+  const pretty = u => u.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+
+  $('website').href  = CONFIG.website;
+  $('github').href   = CONFIG.github;
+  $('linkedin').href = CONFIG.linkedin;
+  if ($('cv')) $('cv').href = CONFIG.cv;
+  $('whatsapp').href = 'https://wa.me/' + CONFIG.phone.replace(/\D/g, '') +
+                       '?text=' + encodeURIComponent(CONFIG.whatsappText);
+
+  document.querySelectorAll('[data-sub]').forEach(el => {
+    el.textContent = pretty(CONFIG[el.dataset.sub]);
+  });
+
+  // Contact file (vCard): opens "Add contact" on iOS and Android
+  const vcf = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'N:' + CONFIG.lastName + ';' + CONFIG.firstName + ';;;',
+    'FN:' + CONFIG.firstName + ' ' + CONFIG.lastName,
+    'TITLE:' + CONFIG.title,
+    'TEL;TYPE=CELL:' + CONFIG.phone,
+    'EMAIL:' + CONFIG.email,
+    'URL:' + CONFIG.website,
+    'URL:' + CONFIG.github,
+    'URL:' + CONFIG.linkedin,
+    'END:VCARD'
+  ].join('\r\n');
+  $('save').href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcf);
+</script>
+
+</body>
+</html>
